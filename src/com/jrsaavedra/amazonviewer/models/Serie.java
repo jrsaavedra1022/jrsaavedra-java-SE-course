@@ -6,7 +6,14 @@
 package com.jrsaavedra.amazonviewer.models;
 
 import java.util.ArrayList;
-
+/**
+ * <h1>Serie </h1>
+ * Hereda de {@link Film} 
+ * 
+ * @author jrsaavedra
+ * @version 1.0
+ * @since 2020
+*/
 public class Serie extends Film{
     // Attributes
     private int id;
@@ -19,10 +26,9 @@ public class Serie extends Film{
     }
     // contructor sobrecargado
 
-    public Serie(String title, String genre, String creator, int duration, int sessionQuantity, ArrayList<Chapter> chapter) {
+    public Serie(String title, String genre, String creator, int duration, int sessionQuantity) {
         super(title, genre, creator, duration);
         this.sessionQuantity = sessionQuantity;
-        this.chapter = chapter;
     }
     
     
@@ -63,9 +69,18 @@ public class Serie extends Film{
     public static ArrayList<Serie> makeSeriesList(){
         ArrayList<Serie> series = new ArrayList();
         for(int i = 1; i < 6; i++){
-            series.add(new Serie("Serie " + i, "Genero " + i, "Creador " + i, 120 + i, 5, Chapter.makeChaptersList()));
+            Serie serie = new Serie("Serie " + i, "Genero " + i, "Creador " + i, 120 + i, 5);
+            serie.setChapter(Chapter.makeChaptersList(serie));
+            series.add(serie);
         }
         return series;
+    }
+/**
+     * {@inheritDoc}
+    */
+    @Override
+    public void view() {
+        super.setViewed(true);
     }
     
 }

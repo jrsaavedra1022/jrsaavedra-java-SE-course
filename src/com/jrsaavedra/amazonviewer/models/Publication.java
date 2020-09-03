@@ -8,9 +8,16 @@ package com.jrsaavedra.amazonviewer.models;
 import java.util.Date;
 
 /**
- *
- * @author Bios-hp
- */
+ * <h1>Publication </h1>
+ * Publication Clase padre
+ * <p>
+ * Esta clase es la clase base de la familia Publicstions.
+ * 
+ * 
+ * @author jrsaavedra
+ * @version 1.0
+ * @since 2020
+*/
 public class Publication {
     //Attributes
     private String title;

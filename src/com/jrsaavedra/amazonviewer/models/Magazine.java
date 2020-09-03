@@ -7,7 +7,14 @@ package com.jrsaavedra.amazonviewer.models;
 
 import java.util.Date;
 
-
+/**
+ * <h1>Magazine </h1>
+ * Hereda de {@link Publication} 
+ * 
+ * @author jrsaavedra
+ * @version 1.0
+ * @since 2020
+*/
 public class Magazine extends Publication{
     // Attributes
     private int id;

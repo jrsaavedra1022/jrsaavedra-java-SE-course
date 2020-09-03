@@ -8,13 +8,20 @@ package com.jrsaavedra.amazonviewer.models;
 import java.util.ArrayList;
 
 /**
- *
- * @author Bios-hp
- */
+ * <h1>Chapter </h1>
+ * Hereda de {@link Movie} 
+ * @see Film
+ * 
+ * @author jrsaavedra
+ * @version 1.0
+ * @since 2020
+*/
 public class Chapter extends Movie{
     // Attributes
     private int id;
     private int sessionNumber;
+    //models
+    private Serie serie;
 
     //contructor
 
@@ -23,15 +30,19 @@ public class Chapter extends Movie{
     
 //contructor soobrecargado
 
-    public Chapter(String title, String genre, String creator, int duration, short year, int sessionNumber) {
+    public Chapter(String title, String genre, String creator, int duration, short year, int sessionNumber, Serie serie) {
         super(title, genre, creator, duration, year);
     this.sessionNumber = sessionNumber;
+    this.serie = serie;
     }
     
    
     //Methods getters and setters
     
     //polimorfismo sobreecribir metodo dar otra funcionalidad
+    /**
+     * {@inheritDoc}
+    */
     @Override
     public int getId(){
         return this.id;
@@ -44,6 +55,15 @@ public class Chapter extends Movie{
     public void setSessionNumber(int sessionNumber) {
         this.sessionNumber = sessionNumber;
     }
+
+    public Serie getSerie() {
+        return serie;
+    }
+
+    public void setSerie(Serie serie) {
+        this.serie = serie;
+    }
+    
     
     @Override
     public String toString() {
@@ -57,13 +77,33 @@ public class Chapter extends Movie{
     }
 
     // Crear lista de capitulos
-    public static ArrayList<Chapter> makeChaptersList(){
+    public static ArrayList<Chapter> makeChaptersList(Serie serie){
         ArrayList<Chapter> chapters = new ArrayList();
         for(int i = 1; i < 6; i++){
-            chapters.add(new Chapter("Capitulo " + i, "Genero " + i, "Creador " + i, 120, (short)(2019+i), i));
+            chapters.add(new Chapter("Capitulo " + i, "Genero " + i, "Creador " + i, 120, (short)(2019+i), i, serie));
         }
         return chapters;
     }
+    /**
+     * {@inheritDoc}
+    */
+    @Override
+    public void view() {
+        super.view(); 
+        ArrayList<Chapter> chapters = this.getSerie().getChapter();
+        int chapterViewedCounter = 0;
+        for(Chapter chapter : chapters){
+            if(chapter.getIsViewed()){
+                chapterViewedCounter++;
+            }        
+        }
+        
+        if(chapterViewedCounter == chapters.size()){
+            this.getSerie().view();
+        }
+    }
+    
+    
     
     
 }
